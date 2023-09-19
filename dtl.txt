@@ -1,0 +1,100 @@
+DJANGO TEMPLATING LANGUAGE
+Django templating language is not simply python embaded in html but it is a templating system designed to 
+express presentation not programme logic.It not responsible for logical flow of code
+>It a markup language but specifically for django
+DTL system provides tags which function similarly to some other python programming constructs
+e.g, an if tag for boolean tests and for tag for looping
+
+TERMS USED
+*Templates; This is a text file
+
+*Filters: Are written in conjunction with variables
+ >Filters are used to modify variables for display
+ >we write them within the curly braces of a variable ie {{winnie | upper }}
+ Examples of filters 
+ 1.lower - letter in lower case
+ -eg {{ uganda|lower }}
+
+ 2.upper - Make letters capital
+ -eg {{ uganda|upper }}
+
+ 3.default-is used if the variable is false the default value is used.
+ -eg {{ author|default:'mark' }}
+
+ 4.capfirst - only the first letter is capitalise the first letter
+ {{ Kampala|capfirst }}
+
+ 5.Length- It is used to return the length of the variable content and it works on lists and string.
+  {{ Kampala|length }}
+
+ 6.filtersizeformat -formats the value of the varible filesize into human readable filesize
+  {{ Kampala|filtersizeformat }}
+
+ 7.Linebreaks- converts linebreak into paragtaphs tags in html.
+ {{ Kampala|linebreaks }}
+
+ 8.escape- It used to escape text contents This filter turns breaktags into p tags
+ {{ Kampala|escape }}
+
+ 9.truncatewords_-displys the first number of words you set of the particular variable 
+ -eg {{ words|truncatewords:number of words to truncate }}
+ 
+10.join- Filters argumentd that contain spaces and must be quoted
+-so to join a list with spaces you would use the join filter e.g
+-{{ students|join:',' }}
+ Filters can be chained/combined. The output of one filter can be passed on to the next.
+ e.g{{ text|Linebreaks|escape|default:'nothing' }}
+ 
+ *comments ;Are used to comment out lines of code in DTL
+ - It is written using one pair of curly braces with nwsted #sign eg{# my comment #} 
+
+*Tags are what we use for presentation flow in django
+  These tags are not executed as  corresponding python code however are evaluated
+  when the template is loaded
+  They are written with % sign e.g {% tag1 %}
+
+NB:
+*VARIABLES;
+ This is written in two curlly braces e.g{{Variable1}}, {{lizzy}} These are variables and are picked from the views
+  A variable is not stored in the templates however the templating engine evaluates
+   that variable and replaces it with the results during the final presentation in the browser 
+    variable name should;
+    > not include spaces
+    >should not start with an underscore or a number or a dot/fullstop(.)
+    >when accesssing a variable the exact dictionary key used in the view is what should be called
+    .whatever you write within the {{}} is read as a variable name
+    .we cannot calculate within the template however we can calculate from the 
+    .views and send the results to the template
+
+TAGS{% tags %}                  
+-Tags are written with modulous sign e.g 
+>Tags are more complex than variables some create outputs in the text 
+>Some control presentation flow by performing loops or logic e.g, {% for %},{% if %}
+and some load external information from the views or other templates to be used by later variables e.g {% extends %}
+>some tags require a beginning and ending tag, ie, {% tag %} content {% end tag %} eg {% block content %}....content... {% endblock %}
+whereas others dont, e.g,{% extends 'parent_template.html' %}
+>There should always be space between the modulous signs and the tag name and between extends and the parent template
+>The tag name should never be in capital letters(upper case) BUT  small leter or lowercase
+    
+>EXAMPLES OF THE TAGS USED IN DJANGO TEMPLATING LANGUAGE 
+1.Extends {% extends 'parent_template' %}
+--This tag is used to inherit a template/base layouts
+--It doesnot require an opening and closing tag
+
+2.Load static {% load static %}
+--This is used to load external information or files eg, css, images, javascript,audio video.
+--This also do not require closing tags
+--This is used to load external information from the django static folder
+
+3.For Tag,ie,{% for item in items %} ..action..{% endfor %}
+--This requires an opening and closing tag.
+--This is used to loop over every item in a list of items
+
+4.If, elif and else tags
+--This valuates a variable or condition, if the condition is satisfied,
+-or the variable is true, then the variable is dispayed.
+--The if tag can be used in conjunction with is_authenticated() method, to control what the user sees 
+before and after logging in (authentication)
+When designing interfaces try to use cards to separate the work
+
+

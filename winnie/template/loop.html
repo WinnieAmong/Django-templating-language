@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>DTL looping through data</h4>
+{% for item in context %}
+<h4>{{item}}</h4>
+
+{% endfor %}
+{% endblock %}

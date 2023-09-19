@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>Name your origin </h3>
+    {% if continent  %}
+        <h4>I am  Proud from {{ continent|linebreaks }}</h4>
+        <h4>I am  Proud from {{ continent|capfirst }}</h4>
+        <h4>I am  Proud from {{ continent|lower }}</h4>
+        <h4>I am  Proud from {{ continent|upper }}</h4>
+        <h4>I am  Proud from {{ continent|length }}</h4>
+        <h4>I am  Proud from {{ continent|default:'Africa' }}</h4>
+        <h4>I am  Proud from {{ continent|join:',' }}</h4
+        <h4>I am  Proud from {{ continent|truncatechars:2 }}</h4>
+        <h4>I am  Proud from {{ continent|filesizeformat }}</h4>
+    {% elif Asian %}
+        <h4>I am a Proud {{Asian}}</h4>
+    {% else %}
+        <h4>I am Homosapean from :</h4>
+        <br>
+        <form action="" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <input type="text" name="continent" required>
+            {% if user.is_authenticated %}
+            <button type="submit" class="btn btn-outline-success">ENTER</button>
+            {% endif %}
+        </form>
+    {% endif %}
+
+{% endblock %}

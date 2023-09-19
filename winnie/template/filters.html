@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>How I can use the filters </h3>
+    {% if continent  %}
+        <h4>I am  Proud from {{ continent|linebreaks }}</h4>
+        
+    {% elif Asian %}
+        <h4>I am a Proud {{Asian}}</h4>
+    {% else %}
+        <h4>I am Homosapean from :</h4>
+        <br>
+        <form action="" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <input type="text" name="continent" required>
+            <button type="submit" class="btn btn-outline-success">ENTER</button>
+            
+        </form>
+    {% endif %}
+
+{% endblock %}
